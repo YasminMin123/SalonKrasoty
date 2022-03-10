@@ -1,0 +1,42 @@
+import accounts as ac
+data = {}
+with open('accounts.txt', 'r') as file:
+    for line in file:
+        key, value = line.strip().split(' ')
+        data[key] = value
+
+
+def log_pass():
+    login = input("Login: -> ")
+    password = input("Password: -> ")
+    return login, password
+
+
+def login(who):
+    kto = who.lower() 
+    if kto == 'posetitel':
+        while True:
+            login, password = log_pass()
+            if (login, password) == list(data.items())[0]:
+                print(ac.posetitel())
+            else:
+                print("Неправильный логин или пароль.")  
+    elif kto == 'manager':
+        while True:
+            login, password = log_pass()
+            if (login, password) == list(data.items())[1]:
+                print(ac.manager())
+            else:
+                print("Неправильный логин или пароль.")
+    elif kto == 'personal':
+        while True:
+            login, password = log_pass()
+            if (login, password) == list(data.items())[2]:
+                print(ac.personal())
+            else:
+                print("Неправильный логин или пароль.")
+
+
+    else:
+        print("Извините, мы не нашли такой тип аккаунта.")
+        return exit()
